@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{%block title%} Daily Flower - Inicio {%endblock%}
+
+{%block body%}
+<header class="flex justify-center p-4 h-2/12 m-0">
+    <h1 class="flex-1 text-4xl lg:text-5xl font-bold text-center leading-none m-0">Daily Flower</h1>
+</header>
+<section class="flex flex-col justify-start items-center gap-y-5 h-9/12 pb-10">
+    <div class="group w-9/10 h-full lg:w-lg [perspective:1000px]">
+        <div id="card" class="relative w-full h-full m-0 transition-transform duration-700 [transform-style:preserve-3d]">
+            <div class="absolute w-full h-full flex flex-col items-center justify-center bg-[#e0d6ff] rounded-lg shadow-md border border-gray-200 overflow-hidden lg:p-8 hover:bg-[#a18594] transition backface-hidden cursor-pointer">
+                <img class="w-full max-h-96 object-cover" src={{flower.img_url}}>
+                <div class="p-4 flex flex-col align-items">
+                    <h2 class="text-xl font-semibold mb-2 text-center">{{today}}</h2>
+                    <p class="text-gray-600 mb-4 text-center">Tomada con: {{flower.camera_mark}} {{flower.camera_model}}</p>
+                    <a href={{flower.author_link}} target="_blank" class="inline-block text-center px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">Ph: {{flower.author}}</a>
+                </div>
+            </div>
+            <div class="absolute w-full h-full flex items-start justify-center bg-[#e0d6ff] rounded-lg shadow-md border border-gray-200 overflow-hidden p-8 backface-hidden [transform:rotateY(180deg)] cursor-pointer">
+                <div class="p-4 flex flex-col align-items">
+                    <h3 class="text-xl font-semibold mb-2 text-center">Datos de la foto</h3>
+                    <p class="text-gray-800 mb-2 text-center">Camara: {{flower.camera_mark}}</p>
+                    <p class="text-gray-800 mb-2 text-center">Modelo: {{flower.camera_model}}</p>
+                    <p class="text-gray-800 mb-2 text-center">T. de exposicion: {{flower.exposure_time}}</p>
+                    <p class="text-gray-800 mb-2 text-center">Apertura: {{flower.aperture}}</p>
+                    <p class="text-gray-800 mb-2 text-center">Distancia de enfoque: {{flower.focal_length}}</p>
+                    <p class="text-gray-800 mb-2 text-center">ISO: {{flower.iso}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button onclick="document.getElementById('card').classList.toggle('rotate-y-180');document.getElementById('girar').classList.toggle('rotate-y-180')"
+    class="p-2 bg-white rounded hover:bg-gray-200 w-15 h-auto cursor-pointer shadow-md border border-gray-300">
+        <img src="/static/img/girar.png" alt="girar" id="girar" class="w-full">
+    </button>
+</section>
+<footer class="bg-gray-700 text-white h-1/12 p-4">
+    <p class="text-center">Giuliano Blengino 2025</p>
+</footer>
+{%endblock%}
