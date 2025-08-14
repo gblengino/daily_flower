@@ -1,19 +1,29 @@
 import requests
+import os
 from flask import Flask, render_template
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy, session
 from sqlalchemy import desc
 from datetime import date
 
+from models import(
+    db, Photo
+)
+
 app = Flask(__name__)
 
 app.secret_key = 'key'
-app.config['SQLALCHEMY_DATABASE_URI'] = ("mysql+pymysql://root@localhost/db_flores")
 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+ENV = os.environ.get("RENDER")
+if ENV:
 
-from models import Photo
+    DB_URL = os.environ.get('DATABASE_URL')
+
+    app.config['SQLACCHEMY_DATABASE_URI'] = DB_URL
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = ("mysql+pymysql://root@localhost/db_flores")
+
+db.init_app(app)
 
 url = "https://api.unsplash.com/photos/random"
 params = {
