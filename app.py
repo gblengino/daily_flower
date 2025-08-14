@@ -14,12 +14,11 @@ app = Flask(__name__)
 
 app.secret_key = 'key'
 
-ENV = os.environ.get("RENDER")
-if ENV:
+
+if os.environ.get("RENDER"):
 
     DB_URL = os.environ.get('DATABASE_URL')
-
-    app.config['SQLACCHEMY_DATABASE_URI'] = DB_URL
+    app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = ("mysql+pymysql://root@localhost/db_flores")
 
