@@ -22,7 +22,9 @@ if os.environ.get("RENDER"):
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = ("mysql+pymysql://dailyflower:florcitas235@mariadb:3306/dailyflower_db")
 
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
+migrate = Migrate(app, db)
 
 url = "https://api.unsplash.com/photos/random"
 params = {
