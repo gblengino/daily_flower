@@ -20,7 +20,7 @@ if os.environ.get("RENDER"):
     DB_URL = os.environ.get('DATABASE_URL')
     app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = ("mysql+pymysql://root@localhost/db_flores")
+    app.config['SQLALCHEMY_DATABASE_URI'] = ("mysql+pymysql://dailyflower:florcitas235@mariadb:3306/dailyflower_db")
 
 db.init_app(app)
 
